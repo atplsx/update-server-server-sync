@@ -1,0 +1,56 @@
+name: Create Release
+
+on:
+  workflow_dispatch:  # Manuel tetikleme
+  push:
+    tags:
+      - 'v*'  # v ile başlayan tüm tag'ler için çalışır
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Install dotnet-outdated tool
+      run: dotnet tool install --global dotnet-outdated-tool
+      
+    - name: Update packages
+      run: dotnet outdated -u
+      
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+      
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+      
+    - name: Publish
+      run: dotnet publish --configuration Release --output ./publish
+      
+    - name: Zip Release
+      run: |
+        cd publish
+        zip -r ../release.zip .
+        cd ..
+        
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: release.zip
+        draft: false
+        prerelease: false
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
