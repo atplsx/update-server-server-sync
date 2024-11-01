@@ -25,18 +25,23 @@ jobs:
       
     - name: Update packages
       run: dotnet outdated -u
+      working-directory: ./build  # Solution klasörünü belirtiyoruz
       
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore microsoft-update.sln
+      working-directory: ./build
       
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build microsoft-update.sln --configuration Release --no-restore
+      working-directory: ./build
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test microsoft-update.sln --no-build --verbosity normal
+      working-directory: ./build
       
     - name: Publish
-      run: dotnet publish --configuration Release --output ./publish
+      run: dotnet publish microsoft-update.sln --configuration Release --output ../publish
+      working-directory: ./build
       
     - name: Zip Release
       run: |
