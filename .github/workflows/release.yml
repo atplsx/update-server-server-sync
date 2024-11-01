@@ -25,7 +25,7 @@ jobs:
       
     - name: Update packages
       run: dotnet outdated -u
-      working-directory: ./build  # Solution klasörünü belirtiyoruz
+      working-directory: ./build
       
     - name: Restore dependencies
       run: dotnet restore microsoft-update.sln
@@ -51,11 +51,11 @@ jobs:
         
     - name: Create Release
       uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
       with:
         files: release.zip
         draft: false
         prerelease: false
+        tag_name: v0.0.${{ github.run_number }}  # Her çalıştırmada otomatik artan bir numara
         generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
