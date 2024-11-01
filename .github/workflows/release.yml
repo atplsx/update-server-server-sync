@@ -6,6 +6,9 @@ on:
     tags:
       - 'v*'  # v ile başlayan tüm tag'ler için çalışır
 
+permissions:
+  contents: write  # Release oluşturmak için gerekli izin
+
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
@@ -55,7 +58,7 @@ jobs:
         files: release.zip
         draft: false
         prerelease: false
-        tag_name: v0.0.${{ github.run_number }}  # Her çalıştırmada otomatik artan bir numara
+        tag_name: v0.0.${{ github.run_number }}
         generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
