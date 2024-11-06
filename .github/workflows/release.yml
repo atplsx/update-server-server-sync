@@ -1,0 +1,64 @@
+name: Create Release
+
+on:
+  workflow_dispatch:  # Manuel tetikleme
+  push:
+    tags:
+      - 'v*'  # v ile başlayan tüm tag'ler için çalışır
+
+permissions:
+  contents: write  # Release oluşturmak için gerekli izin
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Install dotnet-outdated tool
+      run: dotnet tool install --global dotnet-outdated-tool
+      
+    - name: Update packages
+      run: dotnet outdated -u
+      working-directory: ./build
+      
+    - name: Restore dependencies
+      run: dotnet restore microsoft-update.sln
+      working-directory: ./build
+      
+    - name: Build
+      run: dotnet build microsoft-update.sln --configuration Release --no-restore
+      working-directory: ./build
+      
+    - name: Test
+      run: dotnet test microsoft-update.sln --no-build --verbosity normal
+      working-directory: ./build
+      
+    - name: Publish
+      run: dotnet publish microsoft-update.sln --configuration Release --output ../publish
+      working-directory: ./build
+      
+    - name: Zip Release
+      run: |
+        cd publish
+        zip -r ../release.zip .
+        cd ..
+        
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: release.zip
+        draft: false
+        prerelease: false
+        tag_name: v0.0.${{ github.run_number }}
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
