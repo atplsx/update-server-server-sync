@@ -1,0 +1,44 @@
+name: upsync Build and Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore .NET dependencies
+        run: dotnet restore src/tools/upsync/upsync.csproj
+  
+      - name: Update packages with dotnet-outdated tool
+        run: |
+          dotnet tool install --global dotnet-outdated-tool
+          dotnet-outdated --upgrade src/tools/upsync/upsync.csproj --version-lock Minor --recursive
+
+      - name: Publish upsync project
+        run: |
+          dotnet publish src/tools/upsync/upsync.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -p:PublishTrimmed=true `
+            -p:PublishSingleFile=true `
+            -p:EnableCompressionInSingleFile=true `
+            -p:DebugType=None `
+            -p:DebugSymbols=false `
+            --output publish
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: upsync
+          path: publish
