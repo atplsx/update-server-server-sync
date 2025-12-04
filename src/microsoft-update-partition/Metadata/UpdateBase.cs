@@ -561,7 +561,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata
 
         internal void LoadNonIndexedMetadataBase()
         {
-            lock(this)
+            lock (this)
             {
                 if (_MetadataLoaded || _MetadataSource == null)
                 {
@@ -583,7 +583,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata
                     manager.AddNamespace("cbs", "http://schemas.microsoft.com/msus/2002/12/UpdateHandlers/Cbs");
                     manager.AddNamespace("msp", "http://schemas.microsoft.com/msus/2002/12/UpdateHandlers/WindowsInstaller");
                     manager.AddNamespace("wsi", "http://schemas.microsoft.com/msus/2002/12/UpdateHandlers/WindowsSetup");
-                
+
                     _Description = UpdateParser.GetDescription(navigator, manager);
                     _Title = UpdateParser.GetTitle(navigator, manager);
 

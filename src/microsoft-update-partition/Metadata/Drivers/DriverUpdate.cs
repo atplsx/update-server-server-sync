@@ -39,7 +39,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata
                 return _Metadata;
             }
 
-            if(_FastLookupSource != null)
+            if (_FastLookupSource != null)
             {
                 _FastLookupSource.TryListKeyLookup<DriverMetadata>(this.Id, AvailableIndexes.DriverMetadataIndexName, out _Metadata);
                 _DriverMetadataLoaded = true;

@@ -52,7 +52,7 @@ namespace Microsoft.PackageGraph.Storage.Local
                 indexContainer.InputFile = new ZipFile(source, false);
                 indexContainer.ReadTableOfContents();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 indexContainer.Status = IndexContainerStatus.Corrupt;
                 indexContainer.ResetIndex();
@@ -83,7 +83,7 @@ namespace Microsoft.PackageGraph.Storage.Local
 
         private void CreateAllKnownIndexes()
         {
-            foreach(var partition in PartitionRegistration.GetAllPartitions())
+            foreach (var partition in PartitionRegistration.GetAllPartitions())
             {
                 foreach (var knownIndex in partition.Indexes)
                 {
@@ -240,7 +240,7 @@ namespace Microsoft.PackageGraph.Storage.Local
 
         public void IndexPackage(IPackage package, int packageIndex)
         {
-            foreach(var index in Indexes.Values)
+            foreach (var index in Indexes.Values)
             {
                 if (string.IsNullOrEmpty(index.Definition.PartitionName) ||
                     (PartitionRegistration.TryGetPartition(index.Definition.PartitionName, out _) &&

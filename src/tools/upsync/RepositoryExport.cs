@@ -34,7 +34,7 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
             {
                 serverConfig = JsonConvert.DeserializeObject<ServerSyncConfigData>(File.ReadAllText(options.ServerConfigFile));
             }
-            catch(Exception)
+            catch (Exception)
             {
                 ConsoleOutput.WriteRed($"Failed to read server configuration file from {options.ServerConfigFile}");
                 return;

@@ -3,6 +3,7 @@
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ClientSync;
@@ -27,7 +28,9 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
             var bindEndpoint = options.Endpoint;
             var bindPort = options.Port;
 
-            var host = new WebHostBuilder()
+            var host = Host.CreateDefaultBuilder(null).ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder
                 // Bind to an IP address of HOST NAME
                 // Use the same endpoint information when configuring update group policy on the devices
                 // that should get updates from this server
@@ -35,7 +38,8 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
                 // Use the sample MUv6 server startup. Use the sample startup code as a starting point for customization
                 .UseStartup<UpdateServerStartup>()
                 .UseKestrel()
-                .ConfigureKestrel((context, opts) => { })
+                .ConfigureKestrel((context, opts) => { });
+            })
                 .ConfigureLogging((hostingContext, logging) =>
                 {
                     logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
@@ -64,6 +68,6 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
                 .Build();
 
             host.Run();
-        }   
+        }
     }
 }

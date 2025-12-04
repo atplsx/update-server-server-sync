@@ -80,7 +80,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Handlers
             {
                 throw new NotSupportedException("Missing return code metadata in ReturnCode handler");
             }
-            
+
             return returnCode;
         }
     }

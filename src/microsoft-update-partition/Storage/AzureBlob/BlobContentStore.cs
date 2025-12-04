@@ -67,7 +67,7 @@ namespace Microsoft.PackageGraph.Storage.Azure
         public void Download(IEnumerable<IContentFile> files, CancellationToken cancelToken)
         {
             var queuedFiles = new List<IContentFile>();
-            foreach(var file in files)
+            foreach (var file in files)
             {
                 if (PendingFileDownloads.TryAdd(file.Source, file))
                 {
@@ -81,11 +81,11 @@ namespace Microsoft.PackageGraph.Storage.Azure
 
             var cancellationSource = new CancellationTokenSource();
             var progress = new ContentOperationProgress();
-            
+
 
             Progress?.Invoke(this, progress);
 
-            
+
             foreach (var file in queuedFiles)
             {
                 progress.Maximum = (long)file.Size;
@@ -144,7 +144,7 @@ namespace Microsoft.PackageGraph.Storage.Azure
                     for (int i = startBlock; i < blockCount; i++)
                     {
                         var startOffset = i * BlockSize;
-                        var blockSize = (fileSizeOnServer % BlockSize  != 0 && i == (blockCount  -1 )? fileSizeOnServer % BlockSize : BlockSize);
+                        var blockSize = (fileSizeOnServer % BlockSize != 0 && i == (blockCount - 1) ? fileSizeOnServer % BlockSize : BlockSize);
 
                         fileBlob.PutBlock(Convert.ToBase64String(BitConverter.GetBytes(i)), new Uri(file.Source), startOffset, blockSize, null);
                         blockIdList.Add(Convert.ToBase64String(BitConverter.GetBytes(i)));
@@ -250,7 +250,7 @@ namespace Microsoft.PackageGraph.Storage.Azure
         {
             var downloadTask = new Task(() =>
             {
-                Download(new List<IContentFile>() { file}, cancelToken);
+                Download(new List<IContentFile>() { file }, cancelToken);
             });
 
             downloadTask.Start();

@@ -71,11 +71,11 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
         public static void ListAliases(StoreAliasListOptions options)
         {
             List<StoreAliasCreateOptions> storeAliases = LoadStoreAliases(StoreAliasesConfigFile);
-            var aliasesToList = 
-                string.IsNullOrEmpty(options.Alias) ? 
-                storeAliases : 
+            var aliasesToList =
+                string.IsNullOrEmpty(options.Alias) ?
+                storeAliases :
                 storeAliases.Where(alias => alias.Alias == options.Alias);
-            
+
 
             if (aliasesToList.Any())
             {
@@ -236,6 +236,6 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
             return source;
         }
 
-        
+
     }
 }

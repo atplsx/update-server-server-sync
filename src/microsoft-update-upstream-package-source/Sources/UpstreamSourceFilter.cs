@@ -186,7 +186,8 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Source
         {
             var filteredUpdates = source.OfType<MicrosoftUpdatePackage>();
 
-            return filteredUpdates.Where(u => {
+            return filteredUpdates.Where(u =>
+            {
                 if (u.Prerequisites == null)
                 {
                     return false;

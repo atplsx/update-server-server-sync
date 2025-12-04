@@ -175,8 +175,8 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Drivers
                 {
                     returnList.Add(new DriverFeatureScore()
                     {
-                        OperatingSystem = featureScoreResult.Current.GetAttribute("OperatingSystem",""),
-                        Score = Convert.ToByte(featureScoreResult.Current.GetAttribute("FeatureScore",""), 16)
+                        OperatingSystem = featureScoreResult.Current.GetAttribute("OperatingSystem", ""),
+                        Score = Convert.ToByte(featureScoreResult.Current.GetAttribute("FeatureScore", ""), 16)
                     });
                 }
             }

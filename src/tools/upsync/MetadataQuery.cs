@@ -109,7 +109,7 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
         public static void PrintFilter(UpstreamSourceFilter filter, IMetadataStore metadataSource)
         {
             Console.WriteLine("Filter:");
-            
+
             var allClassifications = metadataSource.OfType<ClassificationCategory>();
             var allProducts = metadataSource.OfType<ProductCategory>();
 

@@ -97,7 +97,7 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
 
         public static void OnPackageIndexingProgress(object sender, PackageStoreEventArgs e)
         {
-            lock(ProgressLock)
+            lock (ProgressLock)
             {
                 UpdateConsoleForMessageRefresh();
 

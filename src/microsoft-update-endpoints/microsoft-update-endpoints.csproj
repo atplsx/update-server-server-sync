@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
+
     <RootNamespace>Microsoft.PackageGraph.MicrosoftUpdate.Endpoints</RootNamespace>
     <AssemblyName>package-graph-endpoints-microsoft-update</AssemblyName>
     <PackageId>Microsoft.PackageGraph.MicrosoftUpdate.Endpoints</PackageId>
@@ -18,20 +18,17 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <ProductVersion>3.0.0.0</ProductVersion>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-    <PackageReference Include="SoapCore" Version="1.1.0.31" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Core" Version="2.3.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+    <PackageReference Include="SoapCore" Version="1.2.1.11" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="ClientSync\" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\microsoft-update-partition\microsoft-update-partition.csproj" />
     <ProjectReference Include="..\microsoft-update-webservices\microsoft-update-webservices.csproj" />
   </ItemGroup>
-
 </Project>

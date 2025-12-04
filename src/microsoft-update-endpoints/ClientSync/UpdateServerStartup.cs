@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using SoapCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.UpdateServices.WebServices.ClientSync;
 using System.Reflection;
 using Microsoft.PackageGraph.Storage;
@@ -103,7 +104,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ClientSync
         /// <param name="app">App builder to configure</param>
         /// <param name="env">Hosting environment</param>
         /// <param name="loggerFactory">Logging factory</param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -124,7 +125,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ClientSync
 
             // Wire the upstream WCF services
             app.UseSoapEndpoint<ClientSyncWebService>(
-                "/ClientWebService/client.asmx", 
+                "/ClientWebService/client.asmx",
                 new SoapEncoderOptions() { WriteEncoding = new UTF8Encoding(false) },
                 SoapSerializer.XmlSerializer);
 

@@ -17,7 +17,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Handlers
         /// The program to invoke in order to perform the updates
         /// </summary>
         [JsonProperty]
-        public string Program {get; private set; }
+        public string Program { get; private set; }
 
         /// <summary>
         /// The arguments to pass to the update program
@@ -64,7 +64,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Handlers
         private void ParseCommandLineMetadata(XPathNavigator handlerMetadataNavigator, XmlNamespaceManager namespaceManager)
         {
             ExtractAttributesFromXml(
-                new string[] { "Program", "Arguments", "RebootByDefault", "DefaultResult"},
+                new string[] { "Program", "Arguments", "RebootByDefault", "DefaultResult" },
                 "cmd:InstallCommand/@*",
                 handlerMetadataNavigator,
                 namespaceManager);

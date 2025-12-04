@@ -25,7 +25,7 @@ namespace Microsoft.PackageGraph.Storage.Azure
         public int PackageType { get; set; }
 
         public long MetadataOffset { get; set; }
-        
+
         public long MetadataLength { get; set; }
 
         public long FileListOffset { get; set; }

@@ -63,7 +63,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ClientSync
 
         private static void RemoveDriverMetadataNodes(XElement element)
         {
-            foreach(var driverMetadataElement in element.XPathSelectElements("/Update/ApplicabilityRules/Metadata/d.WindowsDriverMetaData"))
+            foreach (var driverMetadataElement in element.XPathSelectElements("/Update/ApplicabilityRules/Metadata/d.WindowsDriverMetaData"))
             {
                 driverMetadataElement.RemoveNodes();
             }
@@ -162,7 +162,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ClientSync
 
             var localizedProperties = xml.Root.XPathSelectElements("/Update/LocalizedPropertiesCollection/LocalizedProperties");
 
-            foreach(var localizedProperty in localizedProperties)
+            foreach (var localizedProperty in localizedProperties)
             {
                 var languageElement = localizedProperty.XPathSelectElement("Language");
                 if (languageElement != null && languages.Contains(languageElement.Value))

@@ -14,8 +14,8 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata
     public class ClassificationCategory : MicrosoftUpdatePackage
     {
         internal ClassificationCategory(
-            MicrosoftUpdatePackageIdentity id, 
-            XPathNavigator metadataNavigator, 
+            MicrosoftUpdatePackageIdentity id,
+            XPathNavigator metadataNavigator,
             XmlNamespaceManager namespaceManager) : base(id, metadataNavigator, namespaceManager)
         {
         }

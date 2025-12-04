@@ -3917,20 +3917,11 @@ namespace Microsoft.UpdateServices.WebServices.ClientSync
         {
         }
 
-        public ClientWebServiceClient(string endpointConfigurationName) :
-                base(endpointConfigurationName)
-        {
-        }
+        
 
-        public ClientWebServiceClient(string endpointConfigurationName, string remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
+        
 
-        public ClientWebServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
+        
 
         public ClientWebServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
                 base(binding, remoteAddress)

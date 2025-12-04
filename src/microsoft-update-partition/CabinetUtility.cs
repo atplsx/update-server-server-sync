@@ -197,8 +197,8 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Compression
             textWriter.WriteLine(".Set MaxCabinetSize=0");
             textWriter.WriteLine(".Set MaxDiskFileCount=0");
             textWriter.WriteLine(".Set MaxDiskSize=0");
-            
-            foreach(var file in files)
+
+            foreach (var file in files)
             {
                 textWriter.WriteLine("\"{0}\"", file);
             }

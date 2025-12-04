@@ -46,7 +46,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.Content
             byte[] hashHex = HexStringToHex(name);
             if (hashHex.Length == 32)
             {
-                return  new ContentFileDigest("SHA256", Convert.ToBase64String(hashHex));
+                return new ContentFileDigest("SHA256", Convert.ToBase64String(hashHex));
             }
             else if (hashHex.Length == 20)
             {
@@ -76,7 +76,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.Content
             {
                 parsedContentHash = GetContentFileDigestFromUriPart(contentHash);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return BadRequest();
             }

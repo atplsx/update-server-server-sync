@@ -59,7 +59,7 @@ namespace Microsoft.PackageGraph.Storage.Azure
         public static void Erase(CloudBlobContainer container)
         {
             var registeredIndexes = GetRegisteredIndexes();
-            foreach(var registeredIndex in registeredIndexes)
+            foreach (var registeredIndex in registeredIndexes)
             {
                 var indexBlob = container.GetBlockBlobReference(GetIndexBlobNameFromDefinition(registeredIndex));
                 indexBlob.DeleteIfExists();
@@ -71,7 +71,7 @@ namespace Microsoft.PackageGraph.Storage.Azure
 
         private void CreateAllKnownIndexes()
         {
-            foreach(var partition in PartitionRegistration.GetAllPartitions())
+            foreach (var partition in PartitionRegistration.GetAllPartitions())
             {
                 foreach (var knownIndex in partition.Indexes)
                 {
@@ -232,7 +232,7 @@ namespace Microsoft.PackageGraph.Storage.Azure
 
         public void IndexPackage(IPackage package, int packageIndex)
         {
-            foreach(var index in Indexes.Values)
+            foreach (var index in Indexes.Values)
             {
                 if (string.IsNullOrEmpty(index.Definition.PartitionName) ||
                     PartitionRegistration.TryGetPartition(index.Definition.PartitionName, out var _))

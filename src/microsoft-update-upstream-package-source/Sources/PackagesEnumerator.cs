@@ -25,7 +25,7 @@ namespace Microsoft.UpdateServices.MicrosoftUpdate.ServerServerSync.Sources
 
         public void Dispose()
         {
-            
+
         }
 
         public bool MoveNext()

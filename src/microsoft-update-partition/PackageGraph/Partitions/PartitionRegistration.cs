@@ -31,7 +31,7 @@ namespace Microsoft.PackageGraph.Partitions
                         Name = MicrosoftUpdatePartitionRegistration.MicrosoftUpdatePartitionName,
                         Factory = MicrosoftUpdatePartitionRegistration.PartitionSingleton,
                         HasExternalContentFileMetadata = true,
-                        Indexes = new List<IndexDefinition>() 
+                        Indexes = new List<IndexDefinition>()
                         {
                             MicrosoftUpdatePartitionRegistration.KbArticle ,
                             MicrosoftUpdatePartitionRegistration.DriverMetadata,
@@ -49,7 +49,7 @@ namespace Microsoft.PackageGraph.Partitions
 
         public static void RegisterPartition(PartitionDefinition partitionDefinition)
         {
-            lock(KnownPartitionsIndex)
+            lock (KnownPartitionsIndex)
             {
                 KnownPartitionsIndex.Add(partitionDefinition.Name, partitionDefinition);
             }
@@ -57,7 +57,7 @@ namespace Microsoft.PackageGraph.Partitions
 
         public static bool TryGetPartition(string partitionName, out PartitionDefinition partitionDefinition)
         {
-            lock(KnownPartitionsIndex)
+            lock (KnownPartitionsIndex)
             {
                 return KnownPartitionsIndex.TryGetValue(partitionName, out partitionDefinition);
             }
@@ -89,7 +89,7 @@ namespace Microsoft.PackageGraph.Partitions
 
         public static IPackage TryCreatePackageFromUri(string sourceUri)
         {
-            foreach(var partition in KnownPartitionsIndex.Values)
+            foreach (var partition in KnownPartitionsIndex.Values)
             {
                 if (partition.Factory.CanCreatePackageFromSource(sourceUri))
                 {

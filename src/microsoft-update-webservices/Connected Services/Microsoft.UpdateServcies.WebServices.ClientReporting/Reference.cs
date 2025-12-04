@@ -9,7 +9,7 @@
 
 namespace Microsoft.UpdateServices.WebServices.ClientReporting
 {
-#pragma warning disable 1591
+
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1-preview-30422-0661")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://www.microsoft.com/SoftwareDistribution", ConfigurationName="Microsoft.UpdateServices.WebServices.ClientReporting.WebServiceSoap")]
@@ -2466,7 +2466,7 @@ namespace Microsoft.UpdateServices.WebServices.ClientReporting
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
         }
         
-        public virtual System.Threading.Tasks.Task CloseAsync()
+        public new virtual System.Threading.Tasks.Task CloseAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
         }

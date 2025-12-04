@@ -53,14 +53,14 @@ namespace Microsoft.PackageGraph.Storage.Local
 
         readonly private ZipStreamIndexContainer Indexes;
 
-#pragma warning disable 0067
-        public event EventHandler<PackageStoreEventArgs> MetadataCopyProgress;
-        public event EventHandler<PackageStoreEventArgs> OpenProgress;
-        public event EventHandler<PackageStoreEventArgs> PackagesAddProgress;
+
+        public event EventHandler<PackageStoreEventArgs> MetadataCopyProgress { add { } remove { } }
+        public event EventHandler<PackageStoreEventArgs> OpenProgress { add { } remove { } }
+        public event EventHandler<PackageStoreEventArgs> PackagesAddProgress { add { } remove { } }
 #pragma warning restore 0067
 
         public event EventHandler<PackageStoreEventArgs> PackageIndexingProgress;
-        
+
 
         private readonly List<IPackage> PendingPackages = new();
 
@@ -231,7 +231,7 @@ namespace Microsoft.PackageGraph.Storage.Local
         public void CopyTo(IMetadataSink destination, CancellationToken cancelToken)
         {
             var packagesIdsToCopy = _IdentityToIndexMap.Keys.ToList();
-            
+
             if (destination is IMetadataStore destinationPackageStore)
             {
                 packagesIdsToCopy = packagesIdsToCopy.Except(destinationPackageStore.GetPackageIdentities()).ToList();
@@ -243,7 +243,7 @@ namespace Microsoft.PackageGraph.Storage.Local
 
         public void Dispose()
         {
-            lock(WriteLock)
+            lock (WriteLock)
             {
                 if (!IsDisposed)
                 {
@@ -268,7 +268,7 @@ namespace Microsoft.PackageGraph.Storage.Local
 
                 WriteToc();
 
-                foreach(var partitionEntry in PartitionRegistration.GetAllPartitions())
+                foreach (var partitionEntry in PartitionRegistration.GetAllPartitions())
                 {
                     if (!partitionEntry.HandlesIdentities)
                     {
@@ -311,7 +311,7 @@ namespace Microsoft.PackageGraph.Storage.Local
 
         private void CheckIndex(bool forceReindex = false)
         {
-            lock(WriteLock)
+            lock (WriteLock)
             {
                 if (!_IsReindexingRequired && !forceReindex)
                 {
@@ -320,15 +320,15 @@ namespace Microsoft.PackageGraph.Storage.Local
 
                 Indexes.ResetIndex();
 
-                PackageStoreEventArgs progressEvent = new() 
-                { 
-                    Total = _IdentityToIndexMap.Count, 
-                    Current = 0 
+                PackageStoreEventArgs progressEvent = new()
+                {
+                    Total = _IdentityToIndexMap.Count,
+                    Current = 0
                 };
 
-                foreach(var deltaStore in DeltaMetadataStores)
+                foreach (var deltaStore in DeltaMetadataStores)
                 {
-                    foreach(var parsedPackage in deltaStore)
+                    foreach (var parsedPackage in deltaStore)
                     {
                         Indexes.IndexPackage(parsedPackage, _IdentityToIndexMap[parsedPackage.Id]);
 
@@ -354,7 +354,7 @@ namespace Microsoft.PackageGraph.Storage.Local
                 return;
             }
 
-            lock(WriteLock)
+            lock (WriteLock)
             {
                 if (!NewDeltaSubdirectoryCreated)
                 {

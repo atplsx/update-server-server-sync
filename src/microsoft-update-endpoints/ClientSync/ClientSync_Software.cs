@@ -78,7 +78,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ClientSync
             var missingRootUpdates = RootUpdates
                 .Except(installedNonLeaf)                               // Do not resend installed updates
                 .Except(otherCached)                                    // Do not resend other client known updates
-                .Where(guid => IdToFullIdentityMap.ContainsKey(guid))   
+                .Where(guid => IdToFullIdentityMap.ContainsKey(guid))
                 .Select(guid => IdToFullIdentityMap[guid])              // Map the GUID to a fully qualified identity
                 .Select(id => MetadataSource.GetPackage(id) as MicrosoftUpdatePackage)       // Get the update by identity
                 .Take(MaxUpdatesInResponse + 1)                         // Only take the maximum number of updates allowed + 1 (to see if we truncated)
@@ -116,7 +116,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ClientSync
                     .Except(otherCached)                        // Do not resend other client known updates
                     .Where(guid => IdToFullIdentityMap.ContainsKey(guid))
                     .Select(guid => IdToFullIdentityMap[guid])  // Map the GUID to a fully qualified identity
-                    // Non leaf updates can be either a category or regular update
+                                                                // Non leaf updates can be either a category or regular update
                     .Select(id => MetadataSource.GetPackage(id) as MicrosoftUpdatePackage)
                     .Where(u => u.IsApplicable(installedNonLeaf))    // Eliminate not applicable updates
                     .Take(MaxUpdatesInResponse + 1)             // Only take the maximum number of updates allowed + 1 (to see if we truncated)

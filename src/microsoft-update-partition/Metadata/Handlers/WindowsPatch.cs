@@ -16,7 +16,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Handlers
         /// Install parameters for the patch
         /// </summary>
         [JsonProperty]
-        public string InstallParameters {get; private set; }
+        public string InstallParameters { get; private set; }
 
         /// <summary>
         /// Unpacking parameters for the patch

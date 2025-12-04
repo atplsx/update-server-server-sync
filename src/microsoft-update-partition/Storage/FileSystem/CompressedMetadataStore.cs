@@ -20,16 +20,16 @@ namespace Microsoft.PackageGraph.Storage.Local
         ZipOutputStream OutputFile;
 
         Dictionary<string, long> ZipEntriesIndex;
-        
+
         private bool IsDisposed = false;
 
         readonly object WriteLock = new();
 
         public event EventHandler<PackageStoreEventArgs> MetadataCopyProgress;
 
-#pragma warning disable 0067
-        public event EventHandler<PackageStoreEventArgs> OpenProgress;
-        public event EventHandler<PackageStoreEventArgs> PackagesAddProgress;
+
+        public event EventHandler<PackageStoreEventArgs> OpenProgress { add { } remove { } }
+        public event EventHandler<PackageStoreEventArgs> PackagesAddProgress { add { } remove { } }
 #pragma warning restore 0067
 
         private CompressedMetadataStore()
@@ -138,7 +138,7 @@ namespace Microsoft.PackageGraph.Storage.Local
                 throw new Exception("Write not supported");
             }
 
-            lock(WriteLock)
+            lock (WriteLock)
             {
                 WritePackageMetadata(package);
 
@@ -200,7 +200,7 @@ namespace Microsoft.PackageGraph.Storage.Local
 
         public void AddPackages(IEnumerable<IPackage> packages)
         {
-            foreach(var package in packages)
+            foreach (var package in packages)
             {
                 AddPackage(package);
             }
@@ -210,7 +210,7 @@ namespace Microsoft.PackageGraph.Storage.Local
         {
             if (OutputFile != null)
             {
-                lock(WriteLock)
+                lock (WriteLock)
                 {
                     OutputFile.Flush();
                 }
@@ -225,14 +225,14 @@ namespace Microsoft.PackageGraph.Storage.Local
             {
                 if (entry is ZipEntry zipEntry)
                 {
-                    foreach(var partitionDefinition in PartitionRegistration.GetAllPartitions())
+                    foreach (var partitionDefinition in PartitionRegistration.GetAllPartitions())
                     {
                         if (zipEntry.Name.StartsWith($"metadata/partitions/{partitionDefinition.Name}/"))
                         {
                             packagePaths.Add(new KeyValuePair<string, PartitionDefinition>(zipEntry.Name, partitionDefinition));
                             break;
                         }
-                    }   
+                    }
                 }
             }
 
@@ -276,7 +276,7 @@ namespace Microsoft.PackageGraph.Storage.Local
 
                 destination.AddPackage(GetPackage(packageEntry.Key, packageEntry.Value.Name));
 
-                lock(progressArgs)
+                lock (progressArgs)
                 {
                     progressArgs.Current++;
                 }

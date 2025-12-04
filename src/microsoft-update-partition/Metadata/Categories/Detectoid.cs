@@ -14,8 +14,8 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata
     public class DetectoidCategory : MicrosoftUpdatePackage
     {
         internal DetectoidCategory(
-            MicrosoftUpdatePackageIdentity id, 
-            XPathNavigator metadataNavigator, 
+            MicrosoftUpdatePackageIdentity id,
+            XPathNavigator metadataNavigator,
             XmlNamespaceManager namespaceManager) : base(id, metadataNavigator, namespaceManager)
         {
         }

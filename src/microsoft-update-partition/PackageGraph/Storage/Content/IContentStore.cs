@@ -89,7 +89,7 @@ namespace Microsoft.PackageGraph.Storage
         /// <summary>
         /// The size in bytes of content downloaded during the current download operation
         /// </summary>
-        long DownloadedSize { get;  }
+        long DownloadedSize { get; }
 
         /// <summary>
         /// The count of content files left to be downloaded in the current download operation

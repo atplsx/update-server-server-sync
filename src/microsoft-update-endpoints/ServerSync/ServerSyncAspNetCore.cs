@@ -79,7 +79,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ServerSync
                 Categories.AddRange(packageSource.OfType<ProductCategory>());
                 Categories.AddRange(packageSource.OfType<ClassificationCategory>());
                 Categories.AddRange(packageSource.OfType<DetectoidCategory>());
-                foreach(var softwarePackage in packageSource.OfType<SoftwareUpdate>())
+                foreach (var softwarePackage in packageSource.OfType<SoftwareUpdate>())
                 {
                     Updates.Add(softwarePackage.Id as MicrosoftUpdatePackageIdentity, softwarePackage);
                 }
@@ -148,14 +148,14 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ServerSync
                 LastChange = DateTime.Now,
                 AuthInfo = new AuthPlugInInfo[]
                 {
-                    new AuthPlugInInfo() { PlugInID = "DssTargeting", ServiceUrl = "DssAuthWebService/DssAuthWebService.asmx" } 
+                    new AuthPlugInInfo() { PlugInID = "DssTargeting", ServiceUrl = "DssAuthWebService/DssAuthWebService.asmx" }
                 }
             };
 
             GetAuthConfigResponse response = new(
-                new GetAuthConfigResponseBody() 
-                { 
-                    GetAuthConfigResult = result 
+                new GetAuthConfigResponseBody()
+                {
+                    GetAuthConfigResult = result
                 });
 
             return Task.FromResult(response.GetAuthConfigResponse1.GetAuthConfigResult);
@@ -234,7 +234,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ServerSync
                     // Also select all updates that are bundled with updates matching the filter
                     var filteredResult = filteredByProduct.Intersect(filteredByClassification);
                     List<MicrosoftUpdatePackageIdentity> bundledUpdates = new();
-                    foreach(var result in filteredResult)
+                    foreach (var result in filteredResult)
                     {
                         if (Updates[result] is SoftwareUpdate softwareUpdate)
                         {
@@ -244,7 +244,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ServerSync
                             }
                         }
                     }
-                    
+
                     // Deduplicate result and convert to raw identity format
                     response.NewRevisions = filteredResult
                         .Union(bundledUpdates)
@@ -253,7 +253,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ServerSync
                         .ToArray();
                 }
             }
-            catch(Exception) { }
+            catch (Exception) { }
 
             PackageStoreLock.ReleaseReaderLock();
 
@@ -337,7 +337,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ServerSync
                     returnUpdatesList.Add(rawUpdateData);
                 }
             }
-            catch(Exception) { }
+            catch (Exception) { }
 
             response.updates = returnUpdatesList.ToArray();
             // Deduplicate list of files

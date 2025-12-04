@@ -63,7 +63,7 @@ namespace Microsoft.PackageGraph.Storage.Local
             }
             else if (count > availableBytes)
             {
-                return _UnderlyingStream.Read(buffer, offset, (int) availableBytes);
+                return _UnderlyingStream.Read(buffer, offset, (int)availableBytes);
             }
             else
             {
@@ -94,8 +94,8 @@ namespace Microsoft.PackageGraph.Storage.Local
             }
             else if (origin == SeekOrigin.Current)
             {
-                var endPosition = Position + offset ;
-                if (endPosition < 0 || endPosition > _SectionLength )
+                var endPosition = Position + offset;
+                if (endPosition < 0 || endPosition > _SectionLength)
                 {
                     throw new IndexOutOfRangeException();
                 }

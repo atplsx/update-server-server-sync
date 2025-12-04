@@ -492,11 +492,11 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
     [Verb("delete-store-alias", HelpText = "Deletes a store configuration by alias")]
     public class StoreAliasDeleteOptions
     {
-        [Option("alias", Required = true, HelpText = "Delete only the specified alias", SetName ="specific")]
+        [Option("alias", Required = true, HelpText = "Delete only the specified alias", SetName = "specific")]
         public string Alias { get; set; }
 
         [Option("all", Required = true, HelpText = "Delete all aliases", SetName = "all")]
-        public bool All{ get; set; }
+        public bool All { get; set; }
     }
 
     [Verb("list-store-aliases", HelpText = "Lists stored store aliases")]

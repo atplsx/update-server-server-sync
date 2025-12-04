@@ -56,7 +56,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Handlers
             };
 
             categoryHandler.ExtractAttributesFromXml(
-                new string[] { "CategoryType",  "ProhibitsSubcategories", "ProhibitsUpdates", "DisplayOrder", "ExcludedByDefault"},
+                new string[] { "CategoryType", "ProhibitsSubcategories", "ProhibitsUpdates", "DisplayOrder", "ExcludedByDefault" },
                 "cat:CategoryInformation/@*",
                 metadataNavigator,
                 namespaceManager);

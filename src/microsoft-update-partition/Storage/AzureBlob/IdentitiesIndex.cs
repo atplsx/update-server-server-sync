@@ -172,7 +172,7 @@ namespace Microsoft.PackageGraph.Storage.Azure
 
         public int AddPackage(IPackage package, PackageStoreEntry packageEntry)
         {
-            lock(_IdentityToIndexMap)
+            lock (_IdentityToIndexMap)
             {
                 var insertIndex = _IdentityToIndexMap.Count;
                 if (!_IdentityToIndexMap.TryAdd(package.Id, insertIndex))
@@ -213,7 +213,7 @@ namespace Microsoft.PackageGraph.Storage.Azure
 
         public void Save()
         {
-            lock(_IdentityToIndexMap)
+            lock (_IdentityToIndexMap)
             {
                 if (PendingIdentities.Count > 0)
                 {

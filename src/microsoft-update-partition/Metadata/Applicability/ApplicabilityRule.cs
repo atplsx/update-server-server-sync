@@ -42,7 +42,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Applicability
 
         [JsonConstructor]
         private ApplicabilityRule()
-        { 
+        {
         }
 
         internal static List<ApplicabilityRule> FromXml(XPathNavigator metadataNavigator, XmlNamespaceManager namespaceManager)
@@ -60,16 +60,16 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Applicability
                     case "upd:IsInstalled":
                         returnList.Add(
                             new ApplicabilityRule(applicabilityRulesQueryResult.Current, namespaceManager, IsMetadataRule.No)
-                            { 
+                            {
                                 RuleType = ApplicabilityRuleType.IsInstalled
                             });
                         break;
 
                     case "upd:IsInstallable":
                         returnList.Add(
-                            new ApplicabilityRule(applicabilityRulesQueryResult.Current, namespaceManager, IsMetadataRule.No) 
-                            { 
-                                RuleType = ApplicabilityRuleType.IsInstallable 
+                            new ApplicabilityRule(applicabilityRulesQueryResult.Current, namespaceManager, IsMetadataRule.No)
+                            {
+                                RuleType = ApplicabilityRuleType.IsInstallable
                             });
                         break;
 
@@ -80,8 +80,8 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Applicability
                     case "b.WindowsVersion":
                         returnList.Add(
                             new ApplicabilityRule(applicabilityRulesQueryResult.Current, namespaceManager, IsMetadataRule.No)
-                            { 
-                                RuleType = ApplicabilityRuleType.WindowsVersion 
+                            {
+                                RuleType = ApplicabilityRuleType.WindowsVersion
                             });
                         break;
 
@@ -127,7 +127,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Applicability
                                     RuleType = ApplicabilityRuleType.CbsPackageApplicabilityMetadata
                                 });
                         }
-                        
+
                         break;
 
                     case "mar:MsiPatchMetadata":
@@ -169,7 +169,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Applicability
                                     RuleType = ApplicabilityRuleType.WindowsDriverMetadata
                                 });
                         }
-                        
+
                         break;
 
                     case "drv:WindowsDriver":

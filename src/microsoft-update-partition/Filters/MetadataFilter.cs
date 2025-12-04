@@ -101,7 +101,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata
         /// <typeparam name="T">Package type to query. The type must inherit <see cref="MicrosoftUpdatePackage"/></typeparam>
         /// <param name="source">The metadata store to filter</param>
         /// <returns>Matching packages</returns>
-        public IEnumerable<T> Apply<T>(IMetadataStore source)  where T : MicrosoftUpdatePackage
+        public IEnumerable<T> Apply<T>(IMetadataStore source) where T : MicrosoftUpdatePackage
         {
             IEnumerable<T> filteredUpdates;
             var updates = source.OfType<T>();
@@ -170,7 +170,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata
             if (SkipSuperseded)
             {
                 filteredUpdates = filteredUpdates
-                    .Where(u => u is not SoftwareUpdate || 
+                    .Where(u => u is not SoftwareUpdate ||
                     (u is SoftwareUpdate softwareUpdate && (softwareUpdate.IsSupersededBy == null || softwareUpdate.IsSupersededBy.Count == 0)));
             }
 

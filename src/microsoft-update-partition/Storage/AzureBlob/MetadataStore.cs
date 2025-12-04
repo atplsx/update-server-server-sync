@@ -99,7 +99,7 @@ namespace Microsoft.PackageGraph.Storage.Azure
 
         public Stream GetMetadata(PackageStoreEntry packageEntry)
         {
-            lock(DownloadCache)
+            lock (DownloadCache)
             {
                 FillBufferForPackage(packageEntry);
 

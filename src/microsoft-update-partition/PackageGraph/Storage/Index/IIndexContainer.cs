@@ -6,6 +6,6 @@ namespace Microsoft.PackageGraph.Storage.Index
 {
     interface IIndexContainer
     {
-        
+
     }
 }

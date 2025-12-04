@@ -98,7 +98,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ClientSync
                 }
             }
 
-            if(unapprovedDriversMatched.Count > 0)
+            if (unapprovedDriversMatched.Count > 0)
             {
                 OnUnApprovedDriverUpdatesRequested?.Invoke(unapprovedDriversMatched);
             }
@@ -156,7 +156,8 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ClientSync
                         return installedDriverComputerMatchIndex < matchedDriverComputerMatchIndex;
                     }
                 }
-            } else if (matchResult.MatchedComputerHardwareId.HasValue)
+            }
+            else if (matchResult.MatchedComputerHardwareId.HasValue)
             {
                 // The installed driver did not match a computer hardware id but the match result did match
                 return true;

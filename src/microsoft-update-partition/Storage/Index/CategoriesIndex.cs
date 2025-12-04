@@ -12,7 +12,7 @@ using Microsoft.PackageGraph.MicrosoftUpdate.Metadata;
 
 namespace Microsoft.PackageGraph.MicrosoftUpdate.Index
 {
-    class CategoriesIndex : SimpleIndex<int, List<Guid>>, ISimpleMetadataIndex<int , List<Guid>>
+    class CategoriesIndex : SimpleIndex<int, List<Guid>>, ISimpleMetadataIndex<int, List<Guid>>
     {
         public const string Name = AvailableIndexes.CategoriesIndexName;
 
@@ -24,7 +24,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Index
 
         public override void IndexPackage(IPackage package, int packageIndex)
         {
-            if (package is MicrosoftUpdatePackage microsoftUpdate && 
+            if (package is MicrosoftUpdatePackage microsoftUpdate &&
                 microsoftUpdate.Prerequisites != null)
             {
                 var categoryGuids = new List<Guid>();

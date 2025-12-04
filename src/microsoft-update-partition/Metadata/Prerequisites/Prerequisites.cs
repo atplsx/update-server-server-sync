@@ -15,7 +15,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Prerequisites
                 return true;
             }
 
-            foreach(var prereq in update.Prerequisites)
+            foreach (var prereq in update.Prerequisites)
             {
                 if (prereq is Simple)
                 {
@@ -27,7 +27,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Prerequisites
                 else if (prereq is AtLeastOne)
                 {
                     var atLeastOne = false;
-                    foreach(var atLeastOnePrereq in (prereq as AtLeastOne).Simple)
+                    foreach (var atLeastOnePrereq in (prereq as AtLeastOne).Simple)
                     {
                         if (installedPrerequisites.Contains(atLeastOnePrereq.UpdateId))
                         {

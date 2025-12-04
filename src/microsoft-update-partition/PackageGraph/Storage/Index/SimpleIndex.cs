@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Microsoft.PackageGraph.Storage.Index
 {
-    abstract class SimpleIndex<I,T> : IIndex
+    abstract class SimpleIndex<I, T> : IIndex
     {
         protected Dictionary<I, T> Index;
 

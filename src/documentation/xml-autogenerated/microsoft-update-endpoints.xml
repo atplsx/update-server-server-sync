@@ -462,7 +462,7 @@
             <para>The client-server sync and simple authentication services are added to this list.</para>
             </param>
         </member>
-        <member name="M:Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ClientSync.UpdateServerStartup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+        <member name="M:Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ClientSync.UpdateServerStartup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
             <summary>
             Called by ASP.NET to configure a web app's application pipeline
             </summary>
@@ -819,7 +819,7 @@
             <para>The server-server sync and authentication services are added to this list.</para>
             </param>
         </member>
-        <member name="M:Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ServerSync.UpstreamServerStartup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+        <member name="M:Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ServerSync.UpstreamServerStartup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
             <summary>
             Called by ASP.NET to configure a web app's application pipeline
             </summary>

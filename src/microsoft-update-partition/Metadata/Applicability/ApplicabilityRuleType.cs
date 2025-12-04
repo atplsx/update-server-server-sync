@@ -12,7 +12,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Applicability
         /// Checks if an update is installed
         /// </summary>
         IsInstalled,
-        
+
         /// <summary>
         /// Checks if an update is installable
         /// </summary>

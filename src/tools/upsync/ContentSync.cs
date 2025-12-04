@@ -40,7 +40,7 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
 
             var filesToDownload = filteredPackages.Where(p => p.Files != null).SelectMany(p => p.Files).ToList();
 
-            foreach(var microsoftUpdatePackage in filteredPackages.OfType<MicrosoftUpdatePackage>())
+            foreach (var microsoftUpdatePackage in filteredPackages.OfType<MicrosoftUpdatePackage>())
             {
                 filesToDownload.AddRange(GetAllUpdateFiles(metadataSource, microsoftUpdatePackage));
             }
@@ -107,7 +107,7 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
                 ContentSyncLastFileDigest = e.File.Digest.DigestBase64;
             }
 
-            switch(e.CurrentOperation)
+            switch (e.CurrentOperation)
             {
                 case ObjectModel.PackagesOperationType.DownloadFileProgress:
                     UpdateConsoleForMessageRefresh();
@@ -118,7 +118,7 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
 
         private static IContentStore GetContentStoreFromOptions(ContentSyncOptions options)
         {
-            switch(options.ContentStoreType)
+            switch (options.ContentStoreType)
             {
                 case "local":
                     return new FileSystemContentStore(options.ContentPath);

@@ -16,7 +16,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Handlers
         /// The entry point for starting the windows feature update process
         /// </summary>
         [JsonProperty]
-        public string Program {get; private set; }
+        public string Program { get; private set; }
 
         /// <summary>
         /// Whether this feature update is setup360 or not

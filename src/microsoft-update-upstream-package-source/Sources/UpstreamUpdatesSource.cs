@@ -27,11 +27,11 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Source
         /// </summary>
         public event EventHandler<PackageStoreEventArgs> MetadataCopyProgress;
 
-#pragma warning disable 0067
+
         /// <summary>
         /// Progress indicator during source open operations. Not used by UpstreamUpdatesSource.
         /// </summary>
-        public event EventHandler<PackageStoreEventArgs> OpenProgress;
+        public event EventHandler<PackageStoreEventArgs> OpenProgress { add { } remove { } }
 
         /// <summary>
         /// Create a new MicrosoftUpdate package source that retrieves updates from the specified endpoint
@@ -96,7 +96,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Source
 
             if (destination is IMetadataStore destinationBaseline)
             {
-                 unavailableUpdates = _Identities.Where(u => !destinationBaseline.ContainsPackage(u)).ToList();
+                unavailableUpdates = _Identities.Where(u => !destinationBaseline.ContainsPackage(u)).ToList();
             }
             else
             {
@@ -107,7 +107,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Source
             {
                 var progressArgs = new PackageStoreEventArgs() { Total = unavailableUpdates.Count, Current = 0 };
                 var batches = CreateBatchedListFromFlatList(unavailableUpdates, 50);
-                
+
                 MetadataCopyProgress?.Invoke(this, progressArgs);
                 batches.AsParallel().ForAll(batch =>
                 {
@@ -120,11 +120,11 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Source
                     destination.AddPackages(retrievedPackages);
                     retrievedPackages.ForEach(u => u.ReleaseMetadataBytes());
 
-                    lock(progressArgs)
+                    lock (progressArgs)
                     {
                         progressArgs.Current += retrievedPackages.Count;
                         MetadataCopyProgress?.Invoke(this, progressArgs);
-                    }                    
+                    }
                 });
             }
         }

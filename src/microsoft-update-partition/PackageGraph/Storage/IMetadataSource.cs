@@ -27,8 +27,8 @@ namespace Microsoft.PackageGraph.Storage
         /// <summary>
         /// Constructor for a package store event
         /// </summary>
-        public PackageStoreEventArgs() 
-        { 
+        public PackageStoreEventArgs()
+        {
         }
     }
 

@@ -59,7 +59,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Metadata.Drivers
             var newDriverUpdateMatching = new DriverUpdateMatching(packageSource);
 
             var allDrivers = packageSource.OfType<DriverUpdate>();
-            foreach(var driverUpdate in allDrivers)
+            foreach (var driverUpdate in allDrivers)
             {
                 var driverMetadata = driverUpdate.GetDriverMetadata();
                 var driverIndex = packageSource.GetPackageIndex(driverUpdate.Id);

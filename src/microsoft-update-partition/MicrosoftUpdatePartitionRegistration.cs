@@ -16,7 +16,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate
     {
         internal const string MicrosoftUpdatePartitionName = "MicrosoftUpdate";
 
-        internal static readonly MicrosoftUpdatePartition PartitionSingleton = new(); 
+        internal static readonly MicrosoftUpdatePartition PartitionSingleton = new();
 
         internal static readonly IndexDefinition DriverMetadata = new()
         {

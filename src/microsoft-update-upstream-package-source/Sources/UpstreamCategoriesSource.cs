@@ -33,11 +33,11 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Source
         /// </summary>
         public event EventHandler<PackageStoreEventArgs> MetadataCopyProgress;
 
-#pragma warning disable 0067
+
         /// <summary>
         /// Progress indicator during source open operations. Not used by UpstreamCategoriesSource.
         /// </summary>
-        public event EventHandler<PackageStoreEventArgs> OpenProgress;
+        public event EventHandler<PackageStoreEventArgs> OpenProgress { add { } remove { } }
 
         /// <summary>
         /// Create a new MicrosoftUpdate package source that retrieves updates from the specified endpoint
@@ -50,7 +50,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Source
 
         private void RetrievePackageIdentities()
         {
-            lock(this)
+            lock (this)
             {
                 if (_Identities == null)
                 {
@@ -161,7 +161,7 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Source
                     var retrievedPackages = _Client.GetUpdateDataForIds(batch.ToList());
                     destination.AddPackages(retrievedPackages);
 
-                    lock(progressArgs)
+                    lock (progressArgs)
                     {
                         progressArgs.Current += retrievedPackages.Count;
                         MetadataCopyProgress?.Invoke(this, progressArgs);

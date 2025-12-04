@@ -19,11 +19,11 @@ namespace Microsoft.PackageGraph.MicrosoftUpdate.Endpoints.ClientSync
         /// <param name="requestedUnapprovedUpdates"></param>
         public delegate void UnApprovedUpdatesRequestedDelegate(IEnumerable<MicrosoftUpdatePackage> requestedUnapprovedUpdates);
 
-#pragma warning disable 0067
+
         /// <summary>
         /// Event raised when software updates are applicable to a client but are not approved for distribution
         /// </summary>
-        public event UnApprovedUpdatesRequestedDelegate OnUnApprovedSoftwareUpdatesRequested;
+        public event UnApprovedUpdatesRequestedDelegate OnUnApprovedSoftwareUpdatesRequested { add { } remove { } }
 #pragma warning restore 0067
 
         /// <summary>

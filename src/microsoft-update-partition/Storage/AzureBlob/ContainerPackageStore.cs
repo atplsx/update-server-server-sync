@@ -25,8 +25,8 @@ namespace Microsoft.PackageGraph.Storage.Azure
         public event EventHandler<PackageStoreEventArgs> MetadataCopyProgress;
         public event EventHandler<PackageStoreEventArgs> PackageIndexingProgress;
 
-#pragma warning disable 0067
-        public event EventHandler<PackageStoreEventArgs> OpenProgress;
+
+        public event EventHandler<PackageStoreEventArgs> OpenProgress { add { } remove { } }
 #pragma warning restore 0067
 
         public event EventHandler<PackageStoreEventArgs> PackagesAddProgress;
@@ -187,8 +187,8 @@ namespace Microsoft.PackageGraph.Storage.Azure
             {
                 return;
             }
-            
-            lock(Identities)
+
+            lock (Identities)
             {
                 var entry = Metadata.AddPackage(package);
 

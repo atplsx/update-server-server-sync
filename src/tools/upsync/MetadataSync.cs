@@ -45,7 +45,7 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
                 return;
             }
 
-            using(sourceToUpdate)
+            using (sourceToUpdate)
             {
                 if (sourceToUpdate.IsMetadataIndexingSupported)
                 {
@@ -290,7 +290,7 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
         private static UpstreamSourceFilter CreateValidFilterFromOptions(FetchPackagesOptions options, IMetadataStore metadataSource)
         {
             List<Guid> productFilter = CreateFilterListForCategory<ProductCategory>(
-                options.ProductsFilter, 
+                options.ProductsFilter,
                 metadataSource);
 
             List<Guid> classificationFilter = CreateFilterListForCategory<ClassificationCategory>(

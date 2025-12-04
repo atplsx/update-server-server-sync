@@ -15,16 +15,16 @@ namespace Microsoft.PackageGraph.Storage.Local
     class DirectoryMetadataStore : IMetadataSink, IMetadataSource
     {
         readonly string TargetPath;
-        
+
         private bool IsDisposed = false;
 
         readonly object WriteLock = new();
 
         public event EventHandler<PackageStoreEventArgs> MetadataCopyProgress;
 
-#pragma warning disable 0067
-        public event EventHandler<PackageStoreEventArgs> OpenProgress;
-        public event EventHandler<PackageStoreEventArgs> PackagesAddProgress;
+
+        public event EventHandler<PackageStoreEventArgs> OpenProgress { add { } remove { } }
+        public event EventHandler<PackageStoreEventArgs> PackagesAddProgress { add { } remove { } }
 #pragma warning restore 0067
 
         public DirectoryMetadataStore(string path)
@@ -71,7 +71,7 @@ namespace Microsoft.PackageGraph.Storage.Local
                 return File.OpenRead(path);
             }
             else
-            { 
+            {
                 throw new KeyNotFoundException();
             }
         }
@@ -86,7 +86,7 @@ namespace Microsoft.PackageGraph.Storage.Local
 
         public void AddPackage(IPackage package)
         {
-            lock(WriteLock)
+            lock (WriteLock)
             {
                 WritePackageMetadata(package);
 
@@ -144,7 +144,7 @@ namespace Microsoft.PackageGraph.Storage.Local
 
         public void AddPackages(IEnumerable<IPackage> packages)
         {
-            foreach(var package in packages)
+            foreach (var package in packages)
             {
                 AddPackage(package);
             }
@@ -152,7 +152,7 @@ namespace Microsoft.PackageGraph.Storage.Local
 
         private List<KeyValuePair<string, PartitionDefinition>> GetPackagesList()
         {
-            List<KeyValuePair<string, PartitionDefinition>> packagePaths =  new();
+            List<KeyValuePair<string, PartitionDefinition>> packagePaths = new();
 
             var partitions = Directory.GetDirectories(Path.Combine(TargetPath, "metadata", "partitions"));
             foreach (var partition in partitions)
@@ -203,7 +203,7 @@ namespace Microsoft.PackageGraph.Storage.Local
 
                 destination.AddPackage(GetPackage(package.Key, package.Value.Name));
 
-                lock(progressArgs)
+                lock (progressArgs)
                 {
                     progressArgs.Current++;
                 }

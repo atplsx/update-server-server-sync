@@ -174,12 +174,12 @@ namespace Microsoft.PackageGraph.Utilitites.Upsync
         static void PrintHandlerMetadata(HandlerMetadata handler)
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine( "    Handler :");
+            Console.WriteLine("    Handler :");
             Console.ResetColor();
 
             Type handlerType = handler.GetType();
             var handlerProperties = handlerType.GetProperties();
-            foreach(var property in handlerProperties)
+            foreach (var property in handlerProperties)
             {
                 Console.WriteLine("{0,8}{1,-20} : {2}", " ", property.Name, property.GetValue(handler, null));
             }
